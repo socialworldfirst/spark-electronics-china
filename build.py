@@ -1237,7 +1237,10 @@ function getCardStatus(id) {
   // A card with a previous-iteration note is still being iterated on (not yet finalised).
   if (hasFormat && !hasComment && !hasFindmore && !hasPrevNote) return 'bank';
   if (hasFormat || hasComment || hasFindmore || hasPrevNote) return 'active';
-  return 'archive';
+  // Fresh board (no prior-iteration notes anywhere) = v1: untouched cards stay active for triage.
+  // Once any previous_note exists (v2+), untouched cards fall to archive (the cross-round narrowing).
+  const narrowing = document.querySelector('.angle[data-has-prev="1"]') !== null;
+  return narrowing ? 'archive' : 'active';
 }
 let _clustersWrapped = false;
 let _foldStateLocked = false;
@@ -1373,7 +1376,7 @@ function generatePrompt() {
     });
   });
   const lines = [];
-  lines.push(versionTag + ' selections from SEA brand channel spark:');
+  lines.push(versionTag + ' selections from sourcing electronics from China spark:');
   lines.push('');
 
   // Bank section
@@ -1560,7 +1563,7 @@ def render_full_html(inner_html):
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#fafafa">
-<title>SEA brand channel spark</title>
+<title>Sourcing electronics from China spark</title>
 <style>{CSS}</style>
 </head>
 <body>
