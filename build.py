@@ -9,9 +9,9 @@ from html import escape
 
 CONTEXT = {
     "title": "Sourcing electronics from China: angle iteration",
-    "description": "Live brainstorm for short-form video angles on sourcing electronics from China. Core idea: electronics are cheap at the source, smart operators import and keep the margin, and WorldFirst is how you pay the supplier fast, cheap and safe. Each round narrows the list. Tick formats to bank for production, comment to keep iterating, leave untouched to archive.",
+    "description": "Live brainstorm for short-form video angles on sourcing electronics from China. Core idea: electronics are cheap at the source, smart operators import and keep the margin, and WorldFirst is how you pay the supplier fast, cheap and safe. v3 keeps the three banked opportunity hooks locked and adds a fresh wave (amber accent) across sourcing, payments and trust. Tick formats to bank for production, comment to keep iterating, leave untouched to archive.",
 }
-VERSION = "v2"
+VERSION = "v3"
 
 # Angles locked into the bank, seeded server-side so the narrowed state is canonical across
 # devices (localStorage still carries per-device picks; this is the default fallback).
@@ -431,6 +431,250 @@ ANGLES = [
         "shortlist": False,
         "why": None,
     },
+
+    # ========== v3 fresh wave (banked P1 opportunity hooks stay locked; widen sourcing, payments, trust) ==========
+
+    # ---------- P1 — The opportunity (fresh) ----------
+    {
+        "id": "P1-A6",
+        "pillar": "p1",
+        "framework": "Authority / scale",
+        "title": "One product paid for the next five",
+        "hooks": [
+            "The first product barely broke even. It paid for the second. By the sixth, the catalogue was the business. How importing actually compounds.",
+            "Nobody gets rich on one imported product. They get rich on the range the first one funds. The compounding maths.",
+            "Your first electronics product isn't the win. It's the deposit on the next five. Here's how operators stack a catalogue.",
+        ],
+        "mechanism": "Reframes single-product arbitrage as a compounding catalogue. Moves the viewer from one-shot thinking to portfolio building, which is where the real money and the repeat supplier payments live.",
+        "formats": ["SF 60s explainer", "SF 45s number reveal"],
+        "bilingual": False,
+        "talent_fit": "strong",
+        "shortlist": False,
+        "why": None,
+        "fresh": True,
+    },
+    {
+        "id": "P1-A7",
+        "pillar": "p1",
+        "framework": "Curiosity gap",
+        "title": "The product nobody's importing yet",
+        "hooks": [
+            "Everyone sources what's already selling. The money is in the category that's about to. Here are the 3 signals it's coming.",
+            "By the time a product is all over your feed, the margin is gone. How to spot the next one while it's still cheap.",
+            "Saturation kills margin. Here's how to read demand before the category fills up.",
+        ],
+        "mechanism": "Forward-looking counterpart to spotting dead categories. Teaches early-signal reading (search trends, component availability, early movers) so the viewer feels ahead of the curve rather than chasing it.",
+        "formats": ["SF 60s reveal", "SF 45s listicle cut"],
+        "bilingual": False,
+        "talent_fit": "strong",
+        "shortlist": False,
+        "why": None,
+        "fresh": True,
+    },
+    {
+        "id": "P1-A8",
+        "pillar": "p1",
+        "framework": "Demo-before-tell",
+        "title": "Sourcing a viral product before the trend dies",
+        "hooks": [
+            "This gadget is all over my feed this week. I'm finding its factory on 1688 right now, live.",
+            "A trend has about 6 weeks of margin in it. Here's me sourcing one before the window shuts.",
+            "Watch a viral product go from my For You page to a factory quote in under 5 minutes.",
+        ],
+        "mechanism": "Trend-jacking demo, the most scroll-native format there is. Connects a product the viewer just saw to the sourcing reality, collapsing the gap between consumer and importer in real time.",
+        "formats": ["SF 60s screen-record", "SF 45s demo cut"],
+        "bilingual": True,
+        "talent_fit": "strong",
+        "shortlist": True,
+        "why": "Most SF-native of the new opportunity angles. Trend-jacking pulls reach, and it extends the three banked arbitrage hooks into live, repeatable content.",
+        "fresh": True,
+    },
+
+    # ---------- P2 — How to source (fresh) ----------
+    {
+        "id": "P2-A7",
+        "pillar": "p2",
+        "framework": "Tutorial",
+        "title": "How to test samples without overpaying",
+        "hooks": [
+            "Suppliers quote $40 a sample plus $60 shipping. Here's how experienced importers cut both, and get the fee back on the order.",
+            "The sample stage is where beginners bleed money. 3 ways to test products cheaply before you commit.",
+            "How to order from 4 suppliers, compare samples, and not spend a fortune on freight to do it.",
+        ],
+        "mechanism": "Tutorial on the sample-stage economics most beginners get wrong: consolidation, refundable sample fees, agent pickup. Practical, save-bait, and de-risks the step before the first real payment.",
+        "formats": ["SF 60s tutorial", "SF 45s checklist"],
+        "bilingual": False,
+        "talent_fit": "strong",
+        "shortlist": False,
+        "why": None,
+        "fresh": True,
+    },
+    {
+        "id": "P2-A8",
+        "pillar": "p2",
+        "framework": "Reframe (MAG)",
+        "title": "The one document that stops a bad bulk order",
+        "hooks": [
+            "The order arrived wrong, but the supplier did exactly what you asked. The problem was your spec sheet. Here's how to write one they can't misread.",
+            "Beginners send a photo and a vibe. Operators send a spec sheet. The difference shows up in the bulk run.",
+            "Every detail you leave off your spec sheet, the factory decides for you, and they'll pick the cheapest option. The fix.",
+        ],
+        "mechanism": "Names the spec-sheet discipline that separates amateurs from operators. Reframes 'the supplier got it wrong' as 'the brief was incomplete', which is both empowering and immediately actionable.",
+        "formats": ["SF 60s explainer", "SF 45s tutorial cut"],
+        "bilingual": False,
+        "talent_fit": "strong",
+        "shortlist": False,
+        "why": None,
+        "fresh": True,
+    },
+    {
+        "id": "P2-A9",
+        "pillar": "p2",
+        "framework": "Demo-before-tell",
+        "title": "Find a product's real factory with one screenshot",
+        "hooks": [
+            "Screenshot any product, drop it into 1688's image search, and watch the real factories selling it appear. Live demo.",
+            "You don't need the supplier's name. You need a photo. Here's reverse-image sourcing on the Chinese platforms.",
+            "The fastest way to find who actually makes a product: image search, not keyword search. Watch.",
+        ],
+        "mechanism": "Image-search sourcing demo on 1688 and the Chinese platforms. Highly actionable, visual, and feels like a cheat code. Bilingual unlocks the Mandarin-platform search that Western importers rarely touch.",
+        "formats": ["SF 60s screen-record", "SF 45s demo cut"],
+        "bilingual": True,
+        "talent_fit": "strong",
+        "shortlist": True,
+        "why": "A genuine cheat-code how-to with strong save and share rates. Pairs the opportunity hooks with a concrete first action, and bilingual opens Mandarin search.",
+        "fresh": True,
+    },
+    {
+        "id": "P2-A10",
+        "pillar": "p2",
+        "framework": "Comparison",
+        "title": "Alibaba, 1688 or Made-in-China: which and when",
+        "hooks": [
+            "Alibaba, 1688 and Made-in-China are not the same shop. Using the wrong one costs you 15% before you start.",
+            "Three sourcing platforms, three different jobs. The 60-second guide to which one to open.",
+            "Why importers who only use Alibaba are paying a markup the 1688 crowd skips.",
+        ],
+        "mechanism": "Platform decision guide. The board already shows a 1688 demo but never maps the platform choice. Clears a real beginner confusion and routes them to the cheaper rail.",
+        "formats": ["SF 60s comparison", "SF 45s reveal"],
+        "bilingual": False,
+        "talent_fit": "strong",
+        "shortlist": False,
+        "why": None,
+        "fresh": True,
+    },
+
+    # ---------- P3 — Paying the supplier (fresh) ----------
+    {
+        "id": "P3-A7",
+        "pillar": "p3",
+        "framework": "Tutorial",
+        "title": "Never pay 100% upfront. Structure it like this.",
+        "hooks": [
+            "30% now, 70% after inspection. The payment structure that keeps the supplier honest until the goods are right.",
+            "How you split the payment decides who holds the leverage if the batch is bad. Most beginners give it all away upfront.",
+            "The deposit, the balance, and the moment you actually release it. The structure that protects your money.",
+        ],
+        "mechanism": "Payment-milestone tutorial (30/70, balance after inspection). Ties payment structure directly to quality leverage. Protective, practical, and a natural home for the payment product.",
+        "formats": ["SF 60s explainer", "SF 45s tutorial cut"],
+        "bilingual": False,
+        "talent_fit": "strong",
+        "shortlist": False,
+        "why": None,
+        "fresh": True,
+    },
+    {
+        "id": "P3-A8",
+        "pillar": "p3",
+        "framework": "Hidden cost (MAG)",
+        "title": "The bank in the middle you never agreed to pay",
+        "hooks": [
+            "Your wire to China passes through a bank you never chose, and it takes a cut. The intermediary fee nobody mentions.",
+            "You paid your bank's fee. Then a correspondent bank took $25. Then another did. Why one wire gets charged three times.",
+            "The reason your $10K wire arrived short isn't only the exchange rate. It's the intermediary banks in the chain. Here's how to skip them.",
+        ],
+        "mechanism": "Surfaces correspondent and intermediary bank fees on a bank wire, a cost distinct from FX margin and even less visible. Sets up a payment rail that avoids the SWIFT correspondent chain altogether.",
+        "formats": ["SF 45s number reveal", "SF 60s explainer"],
+        "bilingual": False,
+        "talent_fit": "strong",
+        "shortlist": True,
+        "why": "A second, distinct payment-cost wedge beyond FX margin. Most importers have never heard of correspondent fees, so the reveal lands hard and is uniquely ownable.",
+        "fresh": True,
+    },
+    {
+        "id": "P3-A9",
+        "pillar": "p3",
+        "framework": "Demo-before-tell",
+        "title": "Paying every supplier before Chinese New Year",
+        "hooks": [
+            "Chinese New Year shuts every factory for weeks. The scramble to pay 8 suppliers before they close, done in one batch.",
+            "Miss the Chinese New Year payment window and your stock is late by a month. How to pay a whole supplier list at once.",
+            "Every importer's January panic: pay before the factories close. Here's clearing 8 payments in one go.",
+        ],
+        "mechanism": "Timely, operator-real demo around the Chinese New Year production shutdown. Bulk-pay capability shown against a deadline everyone in sourcing feels in their bones. Concrete and seasonal.",
+        "formats": ["SF 60s demo", "SF 45s explainer"],
+        "bilingual": False,
+        "talent_fit": "strong",
+        "shortlist": False,
+        "why": None,
+        "fresh": True,
+    },
+
+    # ---------- P4 — Don't get burned (fresh) ----------
+    {
+        "id": "P4-A6",
+        "pillar": "p4",
+        "framework": "Tutorial",
+        "title": "Pay for the inspection before you pay the balance",
+        "hooks": [
+            "A $300 third-party inspection before the balance payment has saved importers from $20K mistakes. How it works.",
+            "You don't have to fly to China to check your order. Here's how a pre-shipment inspection protects the balance payment.",
+            "The 70% balance is your leverage. Spend $300 on an inspection before you release it. Here's the sequence.",
+        ],
+        "mechanism": "Pre-shipment inspection tutorial tied to the balance-payment moment. The single highest-leverage protection a first-timer can buy, and it pairs directly with the milestone payment structure angle.",
+        "formats": ["SF 60s tutorial", "SF 45s checklist"],
+        "bilingual": False,
+        "talent_fit": "strong",
+        "shortlist": False,
+        "why": None,
+        "fresh": True,
+    },
+    {
+        "id": "P4-A7",
+        "pillar": "p4",
+        "framework": "Counter-case (MAG)",
+        "title": "Trade Assurance won't save you the way you think",
+        "hooks": [
+            "Trade Assurance feels like insurance. Read what it actually covers before you treat it as a safety net.",
+            "The protection most importers lean on has gaps they only discover during a dispute. What it really covers.",
+            "Why 'it's covered by Trade Assurance' is not the same as 'your money is safe'. The fine print.",
+        ],
+        "mechanism": "Counter-case on the false security of platform protection, a belief most beginners hold without reading the terms. Reframes it honestly and positions paying through a controlled rail as the real safeguard.",
+        "formats": ["SF 45s reframe cut", "SF 60s explainer"],
+        "bilingual": False,
+        "talent_fit": "strong",
+        "shortlist": True,
+        "why": "On-brand trust angle that corrects a near-universal beginner assumption. High credibility, and it sets up the payment product as the actual protection rather than the platform's.",
+        "fresh": True,
+    },
+    {
+        "id": "P4-A8",
+        "pillar": "p4",
+        "framework": "Curiosity gap",
+        "title": "That factory tour video might not be their factory",
+        "hooks": [
+            "The factory tour video your supplier sent? It might be someone else's factory. Here's how to check it's real.",
+            "Suppliers borrow factory footage all the time. 3 ways to confirm the floor in the video is actually theirs.",
+            "A polished factory video is not proof. Here's how to verify the place actually makes your product.",
+        ],
+        "mechanism": "Modern verification angle on staged or borrowed factory footage, a tactic beginners fall for constantly. Teaches live-video checks and address verification. Fresh, current, and very shareable.",
+        "formats": ["SF 60s explainer", "SF 45s checklist"],
+        "bilingual": False,
+        "talent_fit": "strong",
+        "shortlist": False,
+        "why": None,
+        "fresh": True,
+    },
 ]
 
 FRAMEWORKS_LIB = [
@@ -504,9 +748,10 @@ def render_angle_card(a):
     <textarea class="card-comment-input" id="comment-{aid}" data-id="{aid}" placeholder="e.g. lean harder into the pain moment, drop this one, change the second hook..."></textarea>
   </div>
 """
-    v2new = "1" if (a.get("derived_from") or a.get("v2_note")) else "0"
+    v2new = "1" if (a.get("derived_from") or a.get("v2_note") or a.get("fresh")) else "0"
+    fresh_attr = "1" if a.get("fresh") else "0"
     return f"""
-<article class="angle" id="{a['id']}" data-pillar="{a['pillar']}" data-fit="{a['talent_fit']}" data-bilingual="{'1' if a['bilingual'] else '0'}" data-shortlist="{'1' if a['shortlist'] else '0'}" data-v2new="{v2new}" data-has-prev="{has_context}">
+<article class="angle" id="{a['id']}" data-pillar="{a['pillar']}" data-fit="{a['talent_fit']}" data-bilingual="{'1' if a['bilingual'] else '0'}" data-shortlist="{'1' if a['shortlist'] else '0'}" data-v2new="{v2new}" data-fresh="{fresh_attr}" data-has-prev="{has_context}">
   <header class="angle-head">
     <div class="angle-id-row">
       <span class="angle-id">{escape(a['id'])}</span>
@@ -541,10 +786,10 @@ def render_filters():
 <aside class="filters">
   <div class="filter-row">
     <button class="chip chip-active" data-filter="all">All angles</button>
-    <button class="chip" data-filter="shortlist">First batch (8)</button>
+    <button class="chip" data-filter="shortlist">First batch (12)</button>
     <button class="chip" data-filter="bilingual">Bilingual</button>
     <button class="chip" data-filter="strong">Strong fit</button>
-    <button class="chip" data-filter="v2new">v2 new</button>
+    <button class="chip" data-filter="v2new">v3 new</button>
     <button class="chip" data-filter="custom">My cards</button>
   </div>
   <div class="filter-row">
@@ -1032,12 +1277,12 @@ function saveSelections() {
 }
 function loadCardComments() {
   try {
-    const stored = localStorage.getItem('spark_elec_card_comments_v2');
+    const stored = localStorage.getItem('spark_elec_card_comments_v3');
     if (stored) cardComments = JSON.parse(stored);
   } catch (_) { cardComments = {}; }
 }
 function saveCardComments() {
-  try { localStorage.setItem('spark_elec_card_comments_v2', JSON.stringify(cardComments)); } catch (_) {}
+  try { localStorage.setItem('spark_elec_card_comments_v3', JSON.stringify(cardComments)); } catch (_) {}
 }
 function loadCustomAngles() {
   try {
@@ -1247,12 +1492,15 @@ function getCardStatus(id) {
   const sels = selections[id] || {};
   const card = document.getElementById(id);
   const hasPrevNote = card && card.dataset.hasPrev === '1';
+  const isFresh = card && card.dataset.fresh === '1';
   const hasFormat = ['reel','longform','image','carousel','kol'].some(f => sels[f]);
   const hasComment = (cardComments[id] || '').trim().length > 0;
   const hasFindmore = !!sels.findmore;
   // A card with a previous-iteration note is still being iterated on (not yet finalised).
   if (hasFormat && !hasComment && !hasFindmore && !hasPrevNote) return 'bank';
   if (hasFormat || hasComment || hasFindmore || hasPrevNote) return 'active';
+  // Fresh-this-version cards stay active for triage even while older untouched cards narrow.
+  if (isFresh) return 'active';
   // v1 = pristine: untouched cards stay active for triage.
   // v2+ (or once any previous_note exists) = narrowing: untouched cards fall to archive.
   let ver = 'v1';
