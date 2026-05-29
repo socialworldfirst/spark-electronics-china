@@ -11,7 +11,16 @@ CONTEXT = {
     "title": "Sourcing electronics from China: angle iteration",
     "description": "Live brainstorm for short-form video angles on sourcing electronics from China. Core idea: electronics are cheap at the source, smart operators import and keep the margin, and WorldFirst is how you pay the supplier fast, cheap and safe. Each round narrows the list. Tick formats to bank for production, comment to keep iterating, leave untouched to archive.",
 }
-VERSION = "v1"
+VERSION = "v2"
+
+# Angles locked into the bank, seeded server-side so the narrowed state is canonical across
+# devices (localStorage still carries per-device picks; this is the default fallback).
+# Format keys: reel / longform / image / carousel / kol.
+SEED_BANK = {
+    "P1-A1": ["reel"],
+    "P1-A2": ["reel"],
+    "P1-A3": ["reel"],
+}
 
 PILLARS = {
     "p1": {
@@ -475,15 +484,18 @@ def render_angle_card(a):
     prev_note_block = f'<div class="prev-note"><span class="prev-note-label">Your v3 note (kept for context)</span><span class="prev-note-text">{escape(a["previous_note"])}</span></div>' if a.get("previous_note") else ""
     has_context = "1" if a.get("previous_note") else "0"
     aid = a["id"]
+    seed_fmts = SEED_BANK.get(aid, [])
+    def _ck(fmt):
+        return " checked" if fmt in seed_fmts else ""
     selectors_html = f"""
   <div class="selectors">
     <div class="selectors-label">Use this angle as</div>
     <div class="selector-group">
-      <label class="selector"><input type="checkbox" class="sel-cb" data-id="{aid}" data-fmt="reel"><span>Short-form reel</span></label>
-      <label class="selector"><input type="checkbox" class="sel-cb" data-id="{aid}" data-fmt="longform"><span>Long-form video</span></label>
-      <label class="selector"><input type="checkbox" class="sel-cb" data-id="{aid}" data-fmt="image"><span>Single image</span></label>
-      <label class="selector"><input type="checkbox" class="sel-cb" data-id="{aid}" data-fmt="carousel"><span>Carousel</span></label>
-      <label class="selector"><input type="checkbox" class="sel-cb" data-id="{aid}" data-fmt="kol"><span>KOL angle</span></label>
+      <label class="selector"><input type="checkbox" class="sel-cb" data-id="{aid}" data-fmt="reel"{_ck('reel')}><span>Short-form reel</span></label>
+      <label class="selector"><input type="checkbox" class="sel-cb" data-id="{aid}" data-fmt="longform"{_ck('longform')}><span>Long-form video</span></label>
+      <label class="selector"><input type="checkbox" class="sel-cb" data-id="{aid}" data-fmt="image"{_ck('image')}><span>Single image</span></label>
+      <label class="selector"><input type="checkbox" class="sel-cb" data-id="{aid}" data-fmt="carousel"{_ck('carousel')}><span>Carousel</span></label>
+      <label class="selector"><input type="checkbox" class="sel-cb" data-id="{aid}" data-fmt="kol"{_ck('kol')}><span>KOL angle</span></label>
     </div>
     <label class="selector selector-action"><input type="checkbox" class="sel-cb" data-id="{aid}" data-fmt="findmore"><span>Find more angles like this</span></label>
   </div>
@@ -1020,12 +1032,12 @@ function saveSelections() {
 }
 function loadCardComments() {
   try {
-    const stored = localStorage.getItem('spark_elec_card_comments_v1');
+    const stored = localStorage.getItem('spark_elec_card_comments_v2');
     if (stored) cardComments = JSON.parse(stored);
   } catch (_) { cardComments = {}; }
 }
 function saveCardComments() {
-  try { localStorage.setItem('spark_elec_card_comments_v1', JSON.stringify(cardComments)); } catch (_) {}
+  try { localStorage.setItem('spark_elec_card_comments_v2', JSON.stringify(cardComments)); } catch (_) {}
 }
 function loadCustomAngles() {
   try {
@@ -1181,8 +1193,8 @@ function initSelectionState() {
     if (typeof selections[id][fmt] !== 'undefined') {
       cb.checked = selections[id][fmt];
     } else {
-      cb.checked = false;
-      selections[id][fmt] = false;
+      // No saved value: honour the server-rendered default (seeds banked angles on fresh devices).
+      selections[id][fmt] = cb.checked;
     }
   });
   saveSelections();
@@ -1237,9 +1249,11 @@ function getCardStatus(id) {
   // A card with a previous-iteration note is still being iterated on (not yet finalised).
   if (hasFormat && !hasComment && !hasFindmore && !hasPrevNote) return 'bank';
   if (hasFormat || hasComment || hasFindmore || hasPrevNote) return 'active';
-  // Fresh board (no prior-iteration notes anywhere) = v1: untouched cards stay active for triage.
-  // Once any previous_note exists (v2+), untouched cards fall to archive (the cross-round narrowing).
-  const narrowing = document.querySelector('.angle[data-has-prev="1"]') !== null;
+  // v1 = pristine: untouched cards stay active for triage.
+  // v2+ (or once any previous_note exists) = narrowing: untouched cards fall to archive.
+  let ver = 'v1';
+  try { ver = JSON.parse(document.getElementById('version-tag').textContent); } catch (e) {}
+  const narrowing = (ver !== 'v1') || document.querySelector('.angle[data-has-prev="1"]') !== null;
   return narrowing ? 'archive' : 'active';
 }
 let _clustersWrapped = false;

@@ -323,7 +323,7 @@ a { color: #111; }
 <div class="content-wrap">
 
 <header class="page-head">
-  <h1>Sourcing electronics from China: angle iteration <span class="version-badge">v1</span></h1>
+  <h1>Sourcing electronics from China: angle iteration <span class="version-badge">v2</span></h1>
   <p class="page-desc">Live brainstorm for short-form video angles on sourcing electronics from China. Core idea: electronics are cheap at the source, smart operators import and keep the margin, and WorldFirst is how you pay the supplier fast, cheap and safe. Each round narrows the list. Tick formats to bank for production, comment to keep iterating, leave untouched to archive.</p>
 </header>
 
@@ -401,7 +401,7 @@ a { color: #111; }
   <div class="selectors">
     <div class="selectors-label">Use this angle as</div>
     <div class="selector-group">
-      <label class="selector"><input type="checkbox" class="sel-cb" data-id="P1-A1" data-fmt="reel"><span>Short-form reel</span></label>
+      <label class="selector"><input type="checkbox" class="sel-cb" data-id="P1-A1" data-fmt="reel" checked><span>Short-form reel</span></label>
       <label class="selector"><input type="checkbox" class="sel-cb" data-id="P1-A1" data-fmt="longform"><span>Long-form video</span></label>
       <label class="selector"><input type="checkbox" class="sel-cb" data-id="P1-A1" data-fmt="image"><span>Single image</span></label>
       <label class="selector"><input type="checkbox" class="sel-cb" data-id="P1-A1" data-fmt="carousel"><span>Carousel</span></label>
@@ -449,7 +449,7 @@ a { color: #111; }
   <div class="selectors">
     <div class="selectors-label">Use this angle as</div>
     <div class="selector-group">
-      <label class="selector"><input type="checkbox" class="sel-cb" data-id="P1-A2" data-fmt="reel"><span>Short-form reel</span></label>
+      <label class="selector"><input type="checkbox" class="sel-cb" data-id="P1-A2" data-fmt="reel" checked><span>Short-form reel</span></label>
       <label class="selector"><input type="checkbox" class="sel-cb" data-id="P1-A2" data-fmt="longform"><span>Long-form video</span></label>
       <label class="selector"><input type="checkbox" class="sel-cb" data-id="P1-A2" data-fmt="image"><span>Single image</span></label>
       <label class="selector"><input type="checkbox" class="sel-cb" data-id="P1-A2" data-fmt="carousel"><span>Carousel</span></label>
@@ -497,7 +497,7 @@ a { color: #111; }
   <div class="selectors">
     <div class="selectors-label">Use this angle as</div>
     <div class="selector-group">
-      <label class="selector"><input type="checkbox" class="sel-cb" data-id="P1-A3" data-fmt="reel"><span>Short-form reel</span></label>
+      <label class="selector"><input type="checkbox" class="sel-cb" data-id="P1-A3" data-fmt="reel" checked><span>Short-form reel</span></label>
       <label class="selector"><input type="checkbox" class="sel-cb" data-id="P1-A3" data-fmt="longform"><span>Long-form video</span></label>
       <label class="selector"><input type="checkbox" class="sel-cb" data-id="P1-A3" data-fmt="image"><span>Single image</span></label>
       <label class="selector"><input type="checkbox" class="sel-cb" data-id="P1-A3" data-fmt="carousel"><span>Carousel</span></label>
@@ -1533,11 +1533,11 @@ a { color: #111; }
 
 
 <footer class="page-foot">
-  <p>Electronics sourcing spark · WorldFirst · CY26 · v1</p>
+  <p>Electronics sourcing spark · WorldFirst · CY26 · v2</p>
 </footer>
 
 <script type="application/json" id="angle-meta">{"P1-A1": "That $80 gadget costs $11 in Shenzhen", "P1-A2": "Same earbuds, two prices, split screen", "P1-A3": "The real margin on a $25 power bank", "P1-A4": "The category beginners pick that's already dead", "P1-A5": "Cheapest products have the worst margins", "P2-A1": "Find the actual factory, not a reseller", "P2-A2": "5 things to ask before you pay a deposit", "P2-A3": "Sourcing a product live on 1688", "P2-A4": "The sample was perfect, the bulk order wasn't", "P2-A5": "MOQ too high? Here are your 3 moves", "P2-A6": "The Shenzhen market that has everything", "P3-A1": "Supplier wants 30% deposit by wire. Now what?", "P3-A2": "Your $10K wire arrived as $9,760", "P3-A3": "FX margin eats 9% of your profit", "P3-A4": "Bank wire vs WorldFirst to a Shenzhen factory", "P3-A5": "Paying a 1688 supplier in CNY in 60 seconds", "P3-A6": "Pay in CNY, get a better unit price", "P4-A1": "The supplier vanished after the deposit", "P4-A2": "Verify a supplier before you pay", "P4-A3": "The cheapest quote is the riskiest", "P4-A4": "4 red flags in a supplier's first message", "P4-A5": "How one importer recovered from a bad batch"}</script>
-<script type="application/json" id="version-tag">"v1"</script>
+<script type="application/json" id="version-tag">"v2"</script>
 
 <div id="selection-panel" class="selection-panel collapsed">
   <div class="selection-panel-bar" onclick="togglePanel()">
@@ -1592,12 +1592,12 @@ function saveSelections() {
 }
 function loadCardComments() {
   try {
-    const stored = localStorage.getItem('spark_elec_card_comments_v1');
+    const stored = localStorage.getItem('spark_elec_card_comments_v2');
     if (stored) cardComments = JSON.parse(stored);
   } catch (_) { cardComments = {}; }
 }
 function saveCardComments() {
-  try { localStorage.setItem('spark_elec_card_comments_v1', JSON.stringify(cardComments)); } catch (_) {}
+  try { localStorage.setItem('spark_elec_card_comments_v2', JSON.stringify(cardComments)); } catch (_) {}
 }
 function loadCustomAngles() {
   try {
@@ -1753,8 +1753,8 @@ function initSelectionState() {
     if (typeof selections[id][fmt] !== 'undefined') {
       cb.checked = selections[id][fmt];
     } else {
-      cb.checked = false;
-      selections[id][fmt] = false;
+      // No saved value: honour the server-rendered default (seeds banked angles on fresh devices).
+      selections[id][fmt] = cb.checked;
     }
   });
   saveSelections();
@@ -1809,9 +1809,11 @@ function getCardStatus(id) {
   // A card with a previous-iteration note is still being iterated on (not yet finalised).
   if (hasFormat && !hasComment && !hasFindmore && !hasPrevNote) return 'bank';
   if (hasFormat || hasComment || hasFindmore || hasPrevNote) return 'active';
-  // Fresh board (no prior-iteration notes anywhere) = v1: untouched cards stay active for triage.
-  // Once any previous_note exists (v2+), untouched cards fall to archive (the cross-round narrowing).
-  const narrowing = document.querySelector('.angle[data-has-prev="1"]') !== null;
+  // v1 = pristine: untouched cards stay active for triage.
+  // v2+ (or once any previous_note exists) = narrowing: untouched cards fall to archive.
+  let ver = 'v1';
+  try { ver = JSON.parse(document.getElementById('version-tag').textContent); } catch (e) {}
+  const narrowing = (ver !== 'v1') || document.querySelector('.angle[data-has-prev="1"]') !== null;
   return narrowing ? 'archive' : 'active';
 }
 let _clustersWrapped = false;
