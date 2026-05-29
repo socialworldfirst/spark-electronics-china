@@ -1750,10 +1750,14 @@ function initSelectionState() {
     const id = cb.dataset.id;
     const fmt = cb.dataset.fmt;
     if (!selections[id]) selections[id] = {};
-    if (typeof selections[id][fmt] !== 'undefined') {
+    if (cb.defaultChecked) {
+      // Server-seeded bank pick: authoritative, overrides any stored/prior value so the
+      // locked angles always show banked regardless of this device's saved history.
+      selections[id][fmt] = true;
+      cb.checked = true;
+    } else if (typeof selections[id][fmt] !== 'undefined') {
       cb.checked = selections[id][fmt];
     } else {
-      // No saved value: honour the server-rendered default (seeds banked angles on fresh devices).
       selections[id][fmt] = cb.checked;
     }
   });
@@ -1916,9 +1920,17 @@ function categorizeCards() {
   const activeSection = document.getElementById('active-section');
   if (bankSection) bankSection.hidden = bankN === 0;
   if (archiveSection) archiveSection.hidden = archiveN === 0;
-  // When fully narrowed (nothing left iterating), hide the ITERATING shell so it doesn't
-  // render as an empty section with duplicated banked cards + empty pillar headers.
-  if (activeSection) activeSection.hidden = activeN === 0;
+  // Fully-narrowed state (0 iterating): keep banked cards visible as full cards, but drop the
+  // empty "iterating" header and any pillar with no banked cards, so it reads cleanly.
+  const narrowed = activeN === 0;
+  if (activeSection) activeSection.hidden = false;
+  const activeHeader = activeSection ? activeSection.querySelector('.section-head-active') : null;
+  if (activeHeader) activeHeader.style.display = narrowed ? 'none' : '';
+  document.querySelectorAll('.pillar').forEach(p => {
+    if (!narrowed) { p.style.display = ''; return; }
+    const hasBank = [...p.querySelectorAll('.angle')].some(c => c.dataset.status === 'bank');
+    p.style.display = hasBank ? '' : 'none';
+  });
   if (bankCount) bankCount.textContent = bankN;
   if (activeCount) activeCount.textContent = activeN;
   if (archiveCount) archiveCount.textContent = archiveN;
