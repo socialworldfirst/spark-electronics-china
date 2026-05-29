@@ -1353,8 +1353,12 @@ function categorizeCards() {
   });
 
   // Section visibility + counts (no physical moves)
+  const activeSection = document.getElementById('active-section');
   if (bankSection) bankSection.hidden = bankN === 0;
   if (archiveSection) archiveSection.hidden = archiveN === 0;
+  // When fully narrowed (nothing left iterating), hide the ITERATING shell so it doesn't
+  // render as an empty section with duplicated banked cards + empty pillar headers.
+  if (activeSection) activeSection.hidden = activeN === 0;
   if (bankCount) bankCount.textContent = bankN;
   if (activeCount) activeCount.textContent = activeN;
   if (archiveCount) archiveCount.textContent = archiveN;
